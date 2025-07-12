@@ -18,22 +18,15 @@ package linkedingo
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 
 	"github.com/google/uuid"
 	"github.com/rs/zerolog"
 )
 
-const BrowserName = "Chrome"
-const ChromeVersion = "135"
-const UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/" + ChromeVersion + ".0.0.0 Safari/537.36"
-const SecCHUserAgent = `"Chromium";v="` + ChromeVersion + `", "Google Chrome";v="` + ChromeVersion + `", "Not-A.Brand";v="99"`
-const OSName = "Linux"
-const SecCHPlatform = `"` + OSName + `"`
-const SecCHMobile = "?0"
-const SecCHPrefersColorScheme = "light"
-const ServiceVersion = "1.13.36969"
+const ServiceVersion = "9.31.2856"
+const UserAgent = "LinkedIn/" + ServiceVersion + " CFNetwork/3855.100.1 Darwin/25.0.0"
+const PageInstance = "urn:li:page:p_flagship3_feed;BltLF3nASzyVYjGAMq/2og=="
 
 type Client struct {
 	http          *http.Client
@@ -41,6 +34,7 @@ type Client struct {
 	userEntityURN URN
 
 	realtimeSessionID uuid.UUID
+	clientID          uuid.UUID
 	realtimeCtx       context.Context
 	realtimeCancelFn  context.CancelFunc
 	realtimeResp      *http.Response
@@ -54,24 +48,13 @@ type Client struct {
 
 func NewClient(ctx context.Context, userEntityURN URN, jar *StringCookieJar, pageInstance, xLiTrack string, handlers Handlers) *Client {
 	log := zerolog.Ctx(ctx)
-	if xLiTrack == "" {
-		log.Warn().Msg("x-li-track is empty, using default")
-		xLiTrack = `{"clientVersion":"` + ServiceVersion + `","mpVersion":"` + ServiceVersion + `","osName":"web","deviceFormFactor":"DESKTOP","mpName":"voyager-web","displayDensity":2,"displayWidth":2880,"displayHeight":1800}`
-	}
-	if pageInstance == "" {
-		log.Warn().Msg("pageInstance is empty, using default")
-		pageInstance = "urn:li:page:messaging_thread;5accf988-7540-4d0a-8a28-a0732bf6de20"
-	}
-
-	trackingData := map[string]any{}
-	if err := json.Unmarshal([]byte(xLiTrack), &trackingData); err != nil {
-		log.Warn().Err(err).Msg("failed to parse x-li-track")
-	}
-	serviceVersion, _ := trackingData["mpVersion"].(string)
-	if serviceVersion == "" {
-		log.Warn().Msg("mpVersion is empty, using default")
-		serviceVersion = ServiceVersion
-	}
+	log.Info().
+		Str("xLiTrack", xLiTrack).
+		Str("pageInstance", pageInstance).
+		Msg("Original")
+	xLiTrack = `{"clientVersion":"` + ServiceVersion + `","mpVersion":"` + ServiceVersion + `","osName":"iOS","mpName":"voyager-ios"}`
+	pageInstance = PageInstance
+	serviceVersion := ServiceVersion
 	return &Client{
 		userEntityURN:     userEntityURN,
 		jar:               jar,
@@ -79,6 +62,7 @@ func NewClient(ctx context.Context, userEntityURN URN, jar *StringCookieJar, pag
 		xLITrack:          xLiTrack,
 		serviceVersion:    serviceVersion,
 		realtimeSessionID: uuid.New(),
+		clientID:          uuid.New(),
 		handlers:          handlers,
 		http: &http.Client{
 			Transport: &http.Transport{

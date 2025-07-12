@@ -1,0 +1,61 @@
+{
+    "topicToGraphQLQueryParams": {
+        "messageReactionSummariesTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.e45b4eb2c266eaa56736b977ee9fe6ae"
+        },
+        "typingIndicatorsTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.950c4d9af5e481d63fe54cd820e64785"
+        },
+        "conversationsTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.54ff36325faaf5c9a32422ac02af1515"
+        },
+        "conversationDeletesTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.d95ddc965354d4c6938d3f5312c0729e"
+        },
+        "messagesTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.cf403c36acd3e7c045ec0cf72cdd6ac2"
+        },
+        "messageSeenReceiptsTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.19d384f55cfa264338f00bd95d5b877d"
+        },
+        "replySuggestionTopicV2": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.81cb9144720f1c60a596f3f5da0965b8"
+        },
+        "conversationDraftsTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.a2e60e67b05dba2a9d99bf683eae1f18"
+        },
+        "conversationDraftDeletesTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.ffe64b2dadc7e40be383789ed76338ab"
+        },
+        "messageDraftsTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.8becbd8b7b54037267e0288b7572c188"
+        },
+        "messageDraftDeletesTopic": {
+            "queryId": "voyagerMessagingDashMessengerRealtimeDecoration.7088126b73204f1f5439bdbaabbb522e"
+        },
+        "messagingSecondaryPreviewBannerTopic": {
+            "queryId": "voyagerMessagingDashRealtimeDecoration.5361adcbf48b93bf010d58932226b228"
+        },
+        "coachStreamingResponsesTopic": {
+            "queryId": "voyagerCoachDashGaiRealtimeDecoration.a988801d662d2b6c05f298841a27ce29"
+        },
+        "generatedJobDescriptionsTopic": {
+            "queryId": "voyagerHiringDashRealtimeDecoration.152070a7143cd52557430a4c7f80e3e8"
+        },
+        "reactionsOnCommentsTopic": {
+            "queryId": "liveVideoVoyagerSocialDashRealtimeDecoration.a4dd02e9a3737a827bd19a4df4e80534"
+        },
+        "liveVideoPostTopic": {
+            "queryId": "liveVideoVoyagerFeedDashLiveUpdatesRealtimeDecoration.1e74db628b2fb98a749bae018de9a8ea"
+        },
+        "reactionsTopic": {
+            "queryId": "liveVideoVoyagerSocialDashRealtimeDecoration.d582f4e5d29389f192b7b5aa335daba0"
+        },
+        "commentsTopic": {
+            "queryId": "liveVideoVoyagerSocialDashRealtimeDecoration.6d0907b09d16c07136ebb2866768b992"
+        },
+        "premiumGeneratedContentsTopic": {
+            "queryId": "voyagerPremiumDashGaiRealtimeDecoration.d0b574be78fbb615172064b40ded192a"
+        }
+    }
+}

@@ -114,7 +114,8 @@ type AudioMetadata struct {
 }
 
 func (c *Client) Download(ctx context.Context, w io.Writer, url string) error {
-	resp, err := c.newAuthedRequest(http.MethodGet, url).DoRaw(ctx)
+	ar := c.newAuthedRequest(http.MethodGet, url)
+	resp, err := ar.WithRawQuery(ar.url.RawQuery).DoRaw(ctx) // enforce original order of query params from url
 	if err != nil {
 		return err
 	}
@@ -133,7 +134,8 @@ func (c *Client) DownloadBytes(ctx context.Context, url string) ([]byte, error) 
 }
 
 func (c *Client) getFileInfoFromHeadRequest(ctx context.Context, url string) (info event.FileInfo, filename string, err error) {
-	headResp, err := c.newAuthedRequest(http.MethodHead, url).Do(ctx, nil)
+	ar := c.newAuthedRequest(http.MethodHead, url)
+	headResp, err := ar.WithRawQuery(ar.url.RawQuery).Do(ctx, nil) // enforce original order of query params from url
 	if err != nil {
 		return info, "", err
 	}

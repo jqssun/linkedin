@@ -1,0 +1,6 @@
+{
+	"professionalEventsTopic": "com.linkedin.voyager.dash.deco.events.ProfessionalEventDetailPage-53",
+	"topCardLiveVideoTopic": "com.linkedin.voyager.dash.deco.video.TopCardLiveVideo-8",
+	"inAppAlertsTopic": "com.linkedin.voyager.dash.deco.identity.notifications.InAppAlert-38",
+	"tabBadgeUpdateTopic": "com.linkedin.voyager.dash.deco.notifications.RealtimeBadgingItemCountsEvent-1"
+}

@@ -18,7 +18,7 @@ func (c *Client) RegisterAndroidPush(ctx context.Context, token string) error {
 		return fmt.Errorf("failed to generate device id: %w", err)
 	}
 	trackHeader := fmt.Sprintf(
-		`{"osName":"Android OS","osVersion":"35","clientVersion":"4.1.1087.2","clientMinorVersion":199502,"model":"Google_Pixel 5a","displayDensity":2.625,"displayWidth":1080,"displayHeight":2201,"dpi":"xhdpi","deviceType":"android","appId":"com.linkedin.android","deviceId":"%s","storeId":"us_googleplay","isAdTrackingLimited":true,"mpName":"voyager-android","mpVersion":"2.165.98"}`,
+		`{"osName":"Android OS","osVersion":"35","clientVersion":"4.1.1090","clientMinorVersion":199800,"appId":"com.linkedin.android","deviceId":"%s","storeId":"us_googleplay","isAdTrackingLimited":true,"mpName":"voyager-android","mpVersion":"2.168.97"}`, // TODO: check
 		deviceId.String(),
 	)
 
@@ -26,8 +26,8 @@ func (c *Client) RegisterAndroidPush(ctx context.Context, token string) error {
 		WithQueryParam("action", "register").
 		WithXLIHeaders().
 		WithCSRF().
-		WithContentType("application/vnd.linkedin.deduped+x-protobuf; symbol-table=voyager-21129; charset=UTF-8").
-		WithHeader("Accept", "application/vnd.linkedin.deduped+x-protobuf+2.0+gql").
+		WithContentType("application/x-protobuf2 ;symbol-table=voyager-21304").
+		WithHeader("Accept", "application/vnd.linkedin.deduped+x-protobuf").
 		WithHeader("X-LI-Track", trackHeader).
 		WithBody(r).
 		Do(ctx, nil)
